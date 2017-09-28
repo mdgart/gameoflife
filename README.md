@@ -1,6 +1,6 @@
 # gameoflife
 
-A Quil sketch designed to ... well, that part is up to you.
+The classic Conway Game of Life in Clojure/Quil
 
 ## Usage
 
