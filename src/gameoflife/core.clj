@@ -2,22 +2,14 @@
   (:require [quil.core :as q]
             [quil.middleware :as m]))
 
-(def grid_size 10)
-(def cell_size 10)
-(def state {:matrix [
-            0 1 0 0 0 0 0 0 0 0
-            0 1 1 0 0 0 0 0 0 0
-            1 1 1 0 0 0 0 0 0 0
-            0 0 0 0 1 0 0 0 0 0
-            0 1 0 1 0 0 0 0 0 0
-            0 0 1 0 0 1 0 0 0 0
-            0 0 0 0 1 0 0 0 0 0
-            1 0 1 0 1 0 0 0 0 0
-            0 1 0 0 0 0 0 0 0 0
-            0 0 1 0 0 0 0 0 0 0]})
+(def grid_size 100)
+(def cell_size 3)
+
+(def state {:matrix (vec 
+                     (repeatedly (* grid_size grid_size) #(rand-int 2)))})
 
 (defn setup []
-  (q/frame-rate 10)
+  (q/frame-rate 30)
   (q/color-mode :hsb)
   (q/no-stroke)
   state)
@@ -62,7 +54,7 @@
       (q/rect x y cell_size cell_size))))
 
 (q/defsketch gameoflife
-  :title "You spin my circle right round"
+  :title "Conway Game of Life"
   :size [500 500]
   ; setup function called only once, during sketch initialization.
   :setup setup
